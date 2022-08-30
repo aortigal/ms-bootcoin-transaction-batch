@@ -3,6 +3,8 @@ package com.bank.msbootcointransactionbatch.services.impl;
 import com.bank.msbootcointransactionbatch.constants.Constant;
 import com.bank.msbootcointransactionbatch.models.dao.TransactionDao;
 import com.bank.msbootcointransactionbatch.models.documents.Transaction;
+import com.bank.msbootcointransactionbatch.models.enums.StatusEnum;
+import com.bank.msbootcointransactionbatch.models.utils.Status;
 import com.bank.msbootcointransactionbatch.services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +19,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public Optional<Transaction> create(Transaction transaction) {
-        transaction.setState(Constant.STATUS_TRANSACTION_CREATE);
+        transaction.setStatus(new Status(StatusEnum.CREATE.getCode(), StatusEnum.CREATE.getDescription()));
         return Optional.of(dao.save(transaction));
     }
 

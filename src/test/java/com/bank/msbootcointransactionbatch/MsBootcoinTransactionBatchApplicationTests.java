@@ -6,8 +6,9 @@ import org.springframework.test.context.TestPropertySource;
 
 @SpringBootTest
 @TestPropertySource(properties = {
-		"kafka.bootstrapAddress=localhost",
-		"kafka.topic.transaction=bootcoin-transaction-topic"
+		"spring.kafka.bootstrap-servers=127.0.0.1:9092",
+		"kafka.topic.transaction=bootcoin-transaction-topic",
+		"spring.kafka.consumer.group-id=bootcoin-transaction_id"
 })
 class MsBootcoinTransactionBatchApplicationTests {
 

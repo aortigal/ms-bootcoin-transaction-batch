@@ -22,16 +22,24 @@ public class ProcessTransactionServiceImpl implements ProcessTransactionService 
     @Override
     public void process(DataEvent<Transaction> dataEvent) {
         log.info("[INI] Process {}", dataEvent.getId());
-        if(dataEvent.getProcess().equals(Constant.PROCESS_TRANSACTION_CREATE)){
-            log.info("save Transaction");
-            transactionService.create(dataEvent.getData());
-        }else if(dataEvent.getProcess().equals(Constant.PROCESS_TRANSACTION_UPDATE)){
-            log.info("update Transaction");
-            transactionService.update(dataEvent.getData());
-        }else{
-            log.info("Procces Invalid {}", dataEvent.getProcess());
+        switch (dataEvent.getProcess()){
+            case Constant.PROCESS_BOOTCOIN_TRANSACTION_CREATE:
+                log.info("save Transaction");
+                transactionService.create(dataEvent.getData());
+                break;
+            case Constant.PROCESS_BOOTCOIN_TRANSACTION_UPDATE:
+                log.info("update Transaction");
+                transactionService.update(dataEvent.getData());
+                break;
+            case Constant.PROCESS_BOOTCOIN_TRANSFER_YANKI_STATUS:
+            case Constant.PROCESS_BOOTCOIN_TRANSFER_BANK_STATUS:
+                log.info("update status Transaction process {} ", dataEvent.getProcess());
+                transactionService.updateStatus(dataEvent.getData());
+                break;
+            default:
+                log.info("Procces Invalid {}", dataEvent.getProcess());
+                break;
         }
-
         log.info("[END] Process {}", dataEvent.getId());
     }
 

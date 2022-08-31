@@ -9,4 +9,6 @@ public interface TransactionService {
 
     Optional<Transaction> update(Transaction transaction);
 
+    Optional<Transaction> updateStatus(Transaction transaction);
+
 }

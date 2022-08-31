@@ -20,7 +20,7 @@ public class KafkaProducer {
     private KafkaTemplate<String, DataEvent<?>> producer;
 
     public void sendMessageTransferYanki(DataEvent<?> dataEvent) {
-        log.info("Producing message {}", dataEvent.toString());
+        log.info("Producing topic {}, message {}",topicTransferYanki, dataEvent.toString());
         this.producer.send(topicTransferYanki, dataEvent);
     }
 

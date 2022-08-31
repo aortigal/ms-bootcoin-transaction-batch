@@ -11,6 +11,7 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
@@ -30,9 +31,9 @@ public class Transaction {
 
     private String recipientName;
 
-    private float rateAmount;
+    private Double rateAmount;
 
-    private float amount;
+    private BigDecimal amount;
 
     private PayMode payMode;
 
